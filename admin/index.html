@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | D'Ambiorix</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+  <link rel="icon" href="../assets/images/logo.jpeg" type="image/jpeg" />
+</head>
+<body class="admin-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="../assets/images/logo.jpeg" alt="Logo" class="sidebar-logo" />
+      <h2>D'Ambiorix</h2>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-target="view-productos">🍔 Productos</button>
+      <button class="nav-item" data-target="view-categorias">📑 Categorías</button>
+      <button class="nav-item" data-target="view-ajustes">⚙️ Ajustes</button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="logout-btn" class="btn-logout">Cerrar Sesión</button>
+      <a href="/" target="_blank" class="link-public">Ver Menú Público ↗</a>
+    </div>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <h1 id="page-title">Gestión de Productos</h1>
+      <div class="admin-user">Admin</div>
+    </header>
+
+    <!-- VISTA PRODUCTOS -->
+    <section id="view-productos" class="admin-view">
+      
+      <!-- FORMULARIO PRODUCTO (Oculto por defecto) -->
+      <div id="form-product-container" class="form-container" style="margin-bottom: 2rem;" hidden>
+        <h2 id="form-prod-title">Nuevo Producto</h2>
+        <form id="form-product">
+          <input type="hidden" id="prod-id" value="">
+          
+          <div class="form-group">
+            <label>Nombre del Producto</label>
+            <input type="text" id="prod-name" placeholder="Ej. Hot Dog Especial" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Precio (DOP)</label>
+            <input type="number" id="prod-price" step="0.01" placeholder="Ej. 150" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Categoría</label>
+            <select id="prod-cat" required></select>
+          </div>
+          
+          <div class="form-group">
+            <label>Descripción (Opcional)</label>
+            <input type="text" id="prod-desc" placeholder="Ej. Con queso y tocineta">
+          </div>
+
+          <!-- CAMPO DE IMAGEN -->
+          <div class="form-group">
+            <label>Imagen del Producto (Opcional)</label>
+            <input type="file" id="prod-img-file" accept="image/jpeg, image/png, image/webp">
+            <input type="hidden" id="prod-img-url" value="">
+            <input type="hidden" id="prod-img-publicid" value="">
+            <div id="img-preview-container" style="margin-top: 10px; display: none;">
+              <img id="img-preview" src="" alt="Preview" style="max-width: 120px; border-radius: 8px; border: 1px solid var(--border-card);">
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+            <button type="submit" class="btn-gold">Guardar Producto</button>
+            <button type="button" id="btn-cancel-prod" class="btn-secondary">Cancelar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="view-actions">
+        <p>Administra los platos y precios de tu menú.</p>
+        <button class="btn-gold" id="btn-new-product">+ Nuevo Producto</button>
+      </div>
+      <div class="table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-products"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- VISTA CATEGORÍAS -->
+    <section id="view-categorias" class="admin-view" hidden>
+      
+      <!-- FORMULARIO CATEGORÍA (Oculto por defecto) -->
+      <div id="form-category-container" class="form-container" style="margin-bottom: 2rem;" hidden>
+        <h2 id="form-cat-title">Nueva Categoría</h2>
+        <form id="form-category">
+          <input type="hidden" id="cat-id" value="">
+          
+          <div class="form-group">
+            <label>Nombre de la Categoría</label>
+            <input type="text" id="cat-name" placeholder="Ej. Postres" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Orden de aparición</label>
+            <input type="number" id="cat-order" placeholder="Ej. 14" required>
+          </div>
+
+          <!-- CAMPO DE IMAGEN CATEGORÍA -->
+          <div class="form-group">
+            <label>Imagen de la Categoría (Opcional)</label>
+            <input type="file" id="cat-img-file" accept="image/jpeg, image/png, image/webp">
+            <input type="hidden" id="cat-img-url" value="">
+            <input type="hidden" id="cat-img-publicid" value="">
+            <div id="cat-img-preview-container" style="margin-top: 10px; display: none;">
+              <img id="cat-img-preview" src="" alt="Preview" style="max-width: 120px; border-radius: 8px; border: 1px solid var(--border-card);">
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+            <button type="submit" class="btn-gold">Guardar Categoría</button>
+            <button type="button" id="btn-cancel-cat" class="btn-secondary">Cancelar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="view-actions">
+        <p>Organiza las secciones de tu menú.</p>
+        <button class="btn-gold" id="btn-new-category">+ Nueva Categoría</button>
+      </div>
+      <div class="table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Orden</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-categories"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- VISTA AJUSTES -->
+    <section id="view-ajustes" class="admin-view" hidden>
+      <div class="form-container">
+        <h2>Configuración del Sitio</h2>
+        <form id="form-settings">
+          <div class="form-group">
+            <label>Nombre del Negocio</label>
+            <input type="text" id="set-name" />
+          </div>
+          <div class="form-group">
+            <label>Teléfono de Contacto</label>
+            <input type="text" id="set-phone" />
+          </div>
+          <div class="form-group">
+            <label>Descripción / Lema</label>
+            <input type="text" id="set-desc" />
+          </div>
+          <button type="submit" class="btn-gold" style="width: 100%; margin-top: 1rem;">Guardar Cambios</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../assets/js/admin.js"></script>
+</body>
+</html>

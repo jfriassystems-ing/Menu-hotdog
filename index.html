@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="D'Ambiorix Hotdog S.R.L. — Menú digital. Higiene, Calidad y Sabor." />
+  <title>D'Ambiorix Hotdog | Menú</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="icon" href="/assets/images/logo.jpeg" type="image/jpeg" />
+</head>
+<body>
+
+  <!-- HEADER LIMPIO -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <img src="/assets/images/logo.jpeg" alt="D'Ambiorix Hotdog" class="brand-logo" id="header-logo" />
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="container" role="main">
+    
+    <!-- VISTA A: MOSAICO DE CATEGORÍAS -->
+    <section id="view-categories" class="view-section">
+      <div id="categories-grid" class="categories-grid">
+        <!-- Se inyectan las tarjetas de categorías con JS -->
+      </div>
+    </section>
+
+    <!-- VISTA B: PRODUCTOS DE LA CATEGORÍA -->
+    <section id="view-products" class="view-section" hidden>
+      <button id="btn-back" class="btn-back">← Volver a Categorías</button>
+      
+      <div class="category-header">
+        <h2 id="active-category-title" class="category-title">HOT DOGS</h2>
+        <p class="category-subtitle">Menú Oficial</p>
+      </div>
+
+      <div id="products-grid" class="products-grid">
+        <!-- Se inyectan las tarjetas de productos con JS -->
+      </div>
+    </section>
+
+    <!-- ESTADOS DE CARGA / ERROR -->
+    <div id="state-loading" class="state-loading">
+      <div class="skeleton-grid">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+    </div>
+
+    <div id="state-error" class="state-error" hidden>
+      <p>Hubo un error al cargar el menú.</p>
+      <button id="retry-btn" class="btn-gold">Reintentar</button>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <img src="/assets/images/logo.jpeg" alt="Logo" class="footer-logo" />
+      <p>© <span id="year"></span> D'Ambiorix Hotdog S.R.L.</p>
+      <p id="footer-contact" class="footer-contact" style="margin-top: 10px;"></p>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/js/menu.js"></script>
+</body>
+</html>

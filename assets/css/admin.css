@@ -1,0 +1,113 @@
+/* =========================================
+   LOGIN (Pantalla de inicio de sesión)
+   ========================================= */
+body.login-body {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; background-color: var(--bg-primary);
+  background-image: radial-gradient(circle at center, #111 0%, #000 100%);
+}
+.login-container {
+  background: var(--bg-card); border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg); padding: 2.5rem; width: 100%;
+  max-width: 400px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+.login-logo { width: 120px; margin: 0 auto 1rem; }
+.login-title { font-family: var(--font-title); color: var(--accent-gold); font-size: 1.8rem; margin: 0 0 0.5rem 0; }
+.login-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+.login-form { text-align: left; }
+.login-error { background: rgba(229, 57, 53, 0.1); color: var(--accent-red); border: 1px solid var(--accent-red); padding: 0.8rem; border-radius: var(--radius-md); font-size: 0.85rem; margin-bottom: 1rem; text-align: center; }
+
+/* =========================================
+   ELEMENTOS COMUNES (Formularios y Botones)
+   ========================================= */
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { display: block; color: var(--text-main); font-weight: 500; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 0.8rem 1rem; background: var(--bg-primary);
+  border: 1px solid var(--border-card); border-radius: var(--radius-md);
+  color: var(--text-main); font-family: var(--font-body); font-size: 1rem;
+  outline: none; transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group select:focus { border-color: var(--accent-gold); }
+.btn-gold { background: var(--accent-gold); color: var(--bg-primary); border: none; padding: 10px 24px; border-radius: var(--radius-md); font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
+.btn-gold:hover { opacity: 0.9; }
+.btn-gold:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-secondary { background: transparent; color: var(--text-main); border: 1px solid var(--border-card); padding: 10px 24px; border-radius: var(--radius-md); cursor: pointer; }
+
+/* =========================================
+   DASHBOARD ADMIN (Panel de Administración)
+   ========================================= */
+.admin-body { display: flex; min-height: 100vh; background-color: var(--bg-primary); }
+
+/* Sidebar (Menú Lateral) */
+.sidebar {
+  width: 260px; background: var(--bg-card); border-right: 1px solid var(--border-card);
+  display: flex; flex-direction: column; position: fixed; top: 0; bottom: 0; left: 0;
+}
+.sidebar-header { padding: 2rem 1rem; text-align: center; border-bottom: 1px solid var(--border-card); }
+.sidebar-logo { width: 80px; margin: 0 auto 10px; border-radius: 50%; }
+.sidebar-header h2 { font-family: var(--font-title); color: var(--accent-gold); font-size: 1.2rem; margin: 0; }
+.sidebar-nav { padding: 1rem 0; flex: 1; }
+.nav-item {
+  display: block; width: 100%; text-align: left; padding: 1rem 1.5rem;
+  background: transparent; border: none; color: var(--text-muted);
+  font-family: var(--font-body); font-size: 1rem; font-weight: 500;
+  cursor: pointer; transition: all 0.2s; border-left: 3px solid transparent;
+}
+.nav-item:hover { color: var(--text-main); background: rgba(255,255,255,0.02); }
+.nav-item.active { color: var(--accent-gold); background: rgba(212, 175, 55, 0.05); border-left-color: var(--accent-gold); }
+.sidebar-footer { padding: 1rem; border-top: 1px solid var(--border-card); text-align: center; }
+.btn-logout { width: 100%; background: transparent; color: var(--accent-red); border: 1px solid rgba(229, 57, 53, 0.3); padding: 10px; border-radius: var(--radius-md); cursor: pointer; margin-bottom: 1rem; transition: all 0.2s; }
+.btn-logout:hover { background: rgba(229, 57, 53, 0.1); }
+.link-public { color: var(--text-muted); font-size: 0.8rem; text-decoration: none; }
+.link-public:hover { color: var(--accent-gold); }
+
+/* Contenido Principal */
+.admin-main { margin-left: 260px; flex: 1; padding: 2rem; }
+.admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border-card); padding-bottom: 1rem; }
+.admin-header h1 { font-family: var(--font-title); color: var(--text-main); font-size: 1.8rem; margin: 0; }
+.admin-user { color: var(--text-muted); font-size: 0.9rem; }
+
+/* Vistas (Secciones) */
+.admin-view { animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+.view-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.view-actions p { color: var(--text-muted); margin: 0; }
+
+/* Tablas */
+.table-container { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); overflow-x: auto; }
+.admin-table { width: 100%; border-collapse: collapse; text-align: left; }
+.admin-table th { padding: 1rem; border-bottom: 1px solid var(--border-card); color: var(--text-muted); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+.admin-table td { padding: 1rem; border-bottom: 1px solid #222; color: var(--text-main); font-size: 0.95rem; }
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover { background: rgba(255,255,255,0.02); }
+.text-gold { color: var(--accent-gold); font-weight: 600; }
+.badge-active { background: rgba(21,128,61,0.1); color: #4ade80; padding: 4px 8px; border-radius: 50px; font-size: 0.75rem; }
+.badge-inactive { background: rgba(229,57,53,0.1); color: var(--accent-red); padding: 4px 8px; border-radius: 50px; font-size: 0.75rem; }
+
+/* Botones de acción (Editar/Eliminar) */
+.btn-icon { background: transparent; border: none; cursor: pointer; font-size: 1.1rem; margin-right: 8px; opacity: 0.7; transition: opacity 0.2s; }
+.btn-icon:hover { opacity: 1; }
+
+/* Formulario de Ajustes */
+.form-container { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 2rem; max-width: 600px; }
+.form-container h2 { font-family: var(--font-title); color: var(--text-main); margin-top: 0; margin-bottom: 1.5rem; }
+
+/* Modal */
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal-content { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 2rem; width: 100%; max-width: 500px; }
+.modal-content h2 { font-family: var(--font-title); color: var(--accent-gold); margin-top: 0; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; }
+
+/* Responsive Admin */
+@media (max-width: 768px) {
+  .admin-body { flex-direction: column; }
+  .sidebar { width: 100%; position: relative; border-right: none; border-bottom: 1px solid var(--border-card); }
+  .sidebar-nav { display: flex; overflow-x: auto; padding: 0; }
+  .nav-item { padding: 1rem; border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+  .nav-item.active { border-left: none; border-bottom-color: var(--accent-gold); }
+  .admin-main { margin-left: 0; padding: 1rem; }
+  .view-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
+

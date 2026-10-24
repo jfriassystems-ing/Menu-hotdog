@@ -1,0 +1,284 @@
+:root {
+  --bg-primary: #0D0D0D;
+  --bg-card: #1A1A1A;
+  --border-card: #2C2C2C;
+  --accent-gold: #D4AF37;
+  --text-main: #FFFFFF;
+  --text-muted: #A0A0A0;
+  
+  --font-title: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* HEADER */
+.site-header {
+  text-align: center;
+  padding: 1rem 0;
+  background: transparent;
+}
+.header-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.brand-logo {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+}
+
+/* VISTAS */
+.view-section {
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* VISTA A: MOSAICO DE CATEGORÍAS (ZIGZAG) */
+.categories-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  padding-bottom: 2rem;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: row; /* Imagen a la izquierda por defecto */
+  align-items: stretch;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, border-color 0.2s;
+  cursor: pointer;
+  height: 110px; /* Altura fija para uniformidad */
+}
+
+/* Clase para invertir el orden (Imagen a la derecha) */
+.category-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-gold);
+}
+
+.category-card-img {
+  width: 120px;
+  height: 100%;
+  object-fit: cover;
+  background: #111;
+  flex-shrink: 0;
+}
+
+.category-card-content {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Alineación del texto para la tarjeta invertida */
+.category-card.reverse .category-card-content {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.category-card-name {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0 0 4px 0;
+  color: var(--text-main);
+}
+
+.category-card-btn {
+  color: var(--accent-gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* VISTA B: PRODUCTOS */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-card);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s;
+}
+.btn-back:hover {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+.category-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.category-title {
+  font-family: var(--font-title);
+  color: var(--accent-gold);
+  font-size: 2rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+.category-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 4px 0 0 0;
+}
+
+.products-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  padding-bottom: 2rem;
+}
+
+/* TARJETA DE PRODUCTO */
+.product-card {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.product-card-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  background: #111;
+}
+.product-card-body {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.product-card-name {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text-main);
+}
+.product-card-desc {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin: 4px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.product-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+.product-card-price {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--accent-gold);
+}
+.product-card-status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  padding: 2px 8px;
+  border-radius: 50px;
+}
+.product-card-status.agotado {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* ESTADOS Y SKELETON */
+.state-loading, .state-error {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-muted);
+}
+.btn-gold {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+.skeleton-grid {
+  display: grid; gap: 1rem; grid-template-columns: 1fr;
+}
+.skeleton-card {
+  height: 100px; border-radius: 16px;
+  background: linear-gradient(90deg, #1A1A1A 25%, #2C2C2C 50%, #1A1A1A 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* FOOTER */
+.site-footer {
+  border-top: 1px solid var(--border-card);
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.footer-logo {
+  width: 60px; margin: 0 auto 1rem;
+  opacity: 0.5;
+}
+
+/* RESPONSIVE */
+@media (min-width: 600px) {
+  .categories-grid, .products-grid, .skeleton-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
